@@ -22,4 +22,4 @@ section.drop_duplicates(subset=['km', 'code'], inplace=True)
 
 section.sort_values(by=['code', 'km'])
 
-section.to_csv("finalCsv/section.csv", index=False)
+section.to_csv("partialCsv/section.csv", index=False)
