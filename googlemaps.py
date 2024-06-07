@@ -34,6 +34,6 @@ section.replace({".": np.nan}, inplace=True)
 
 section.dropna(inplace=True)
 
-section.drop(columns=["Unnamed: 0"], inplace=True)
+section.drop(columns=["Unnamed: 0", "stateid"], inplace=True)
     
-section.to_csv("finalCsv/sectionwcity.csv", index=False)
+section.to_csv("finalCsv/sectionwcity.csv", index=False, header=False)

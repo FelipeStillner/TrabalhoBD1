@@ -20,8 +20,15 @@ person.dropna(inplace=True)
 
 for index, row in crash.iterrows():
     crash.at[index, "km"] = str(row["km"]).split(",")[0]
+    
+for index, row in vehicle.iterrows():
+    vehicle.at[index, "ano_fabricacao_veiculo"] = str(row["ano_fabricacao_veiculo"]).split(".")[0]
 
-crash.to_csv("finalCsv/crash.csv", index=False)
-vehicle.to_csv("finalCsv/vehicle.csv", index=False)
-person.to_csv("finalCsv/person.csv", index=False)
+for index, row in person.iterrows():
+    person.at[index, "idade"] = str(row["idade"]).split(".")[0]
+    person.at[index, "sexo"] = str(row["sexo"])[0]
+
+crash.to_csv("finalCsv/crash.csv", index=False, header=False)
+vehicle.to_csv("finalCsv/vehicle.csv", index=False, header=False)
+person.to_csv("finalCsv/person.csv", index=False, header=False)
 

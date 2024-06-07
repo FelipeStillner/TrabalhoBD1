@@ -6,4 +6,4 @@ cities = df[['CÓDIGO DO MUNICÍPIO - IBGE', "MUNICÍPIO - IBGE", "UF"]]
 
 cities.rename(columns={"CÓDIGO DO MUNICÍPIO - IBGE": "cityid", "MUNICÍPIO - IBGE": "name", "UF": "stateid"}, inplace=True)
 
-cities.to_csv("finalCsv/cities.csv", index=False)
+cities.to_csv("finalCsv/city.csv", index=False, header=False)
