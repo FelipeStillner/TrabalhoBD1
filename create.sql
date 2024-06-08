@@ -31,7 +31,7 @@ CREATE TABLE "section"
     "section_ic" NUMERIC,
     "section_ip" NUMERIC,
     "section_icm" NUMERIC,
-	"city_name" INTEGER,
+	"city_name" VARCHAR(255),
 	PRIMARY KEY ("section_br", "section_km"),
 	FOREIGN KEY ("city_name") REFERENCES "city" 
 );
