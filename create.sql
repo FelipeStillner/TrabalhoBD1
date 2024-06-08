@@ -1,27 +1,27 @@
-DROP TABLE IF EXISTS "person";
-DROP TABLE IF EXISTS "vehicle";
-DROP TABLE IF EXISTS "state";
-DROP TABLE IF EXISTS "city";
-DROP TABLE IF EXISTS "section";
-DROP TABLE IF EXISTS "crash";
+DROP TABLE IF EXISTS "bd1_accidents_person";
+DROP TABLE IF EXISTS "bd1_accidents_vehicle";
+DROP TABLE IF EXISTS "bd1_accidents_state";
+DROP TABLE IF EXISTS "bd1_accidents_city";
+DROP TABLE IF EXISTS "bd1_accidents_section";
+DROP TABLE IF EXISTS "bd1_accidents_crash";
 
-CREATE TABLE "state"
+CREATE TABLE "bd1_accidents_state"
 ( 
 	"state_code" char(2) NOT NULL,
 	"state_name" VARCHAR(255),
 	PRIMARY KEY ("state_code")
 );
 
-CREATE TABLE "city"
+CREATE TABLE "bd1_accidents_city"
 ( 
 	"city_code" INTEGER NOT NULL,
 	"city_name" VARCHAR(255) NOT NULL,
 	"state_code" char(2) NOT NULL,
 	PRIMARY KEY ("city_name"),
-	FOREIGN KEY ("state_code") REFERENCES "state" 
+	FOREIGN KEY ("state_code") REFERENCES "bd1_accidents_state" 
 );
 
-CREATE TABLE "section"
+CREATE TABLE "bd1_accidents_section"
 ( 
 	"section_br" INTEGER NOT NULL,
 	"section_km" INTEGER NOT NULL,
@@ -33,10 +33,10 @@ CREATE TABLE "section"
     "section_icm" NUMERIC,
 	"city_name" VARCHAR(255),
 	PRIMARY KEY ("section_br", "section_km"),
-	FOREIGN KEY ("city_name") REFERENCES "city" 
+	FOREIGN KEY ("city_name") REFERENCES "bd1_accidents_city" 
 );
 
-CREATE TABLE "crash"
+CREATE TABLE "bd1_accidents_crash"
 ( 
 	"crash_id" INTEGER NOT NULL,
 	"crash_date" DATE,
@@ -61,10 +61,10 @@ CREATE TABLE "crash"
 	"crash_delegacy" VARCHAR(255),
 	"crash_uop" VARCHAR(255),
 	PRIMARY KEY ("crash_id"),
-	FOREIGN KEY ("section_br", "section_km") REFERENCES "section" 
+	FOREIGN KEY ("section_br", "section_km") REFERENCES "bd1_accidents_section" 
 );
 
-CREATE TABLE "person"
+CREATE TABLE "bd1_accidents_person"
 ( 
 	"person_id" INTEGER NOT NULL,
     "person_kind" VARCHAR(255) NOT NULL,
@@ -73,10 +73,10 @@ CREATE TABLE "person"
 	"person_sex" CHAR(1) NOT NULL,
     "crash_id" INTEGER NOT NULL, 
 	PRIMARY KEY ("person_id"),
-    FOREIGN KEY ("crash_id") REFERENCES "crash" 
+    FOREIGN KEY ("crash_id") REFERENCES "bd1_accidents_crash" 
 );
 
-CREATE TABLE "vehicle"
+CREATE TABLE "bd1_accidents_vehicle"
 ( 
 	"vehicle_id" INTEGER NOT NULL,
     "vehicle_kind" VARCHAR(255)  NOT NULL,
@@ -84,5 +84,5 @@ CREATE TABLE "vehicle"
 	"vehicle_year" INTEGER  NOT NULL,
 	"crash_id" INTEGER  NOT NULL, 
 	PRIMARY KEY ("vehicle_id"),
-    FOREIGN KEY ("crash_id") REFERENCES "crash" 
+    FOREIGN KEY ("crash_id") REFERENCES "bd1_accidents_crash" 
 );

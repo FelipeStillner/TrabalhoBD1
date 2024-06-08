@@ -11,7 +11,7 @@ f = open("insert.sql", "w")
 
 for index, row in state.iterrows():
     f.write(
-        'INSERT INTO "state" ("state_code", "state_name") VALUES (\''
+        'INSERT INTO "bd1_accidents_state" ("state_code", "state_name") VALUES (\''
         + str(row[0])
         + "', '"
         + str(row[1])
@@ -19,7 +19,7 @@ for index, row in state.iterrows():
     )
 for index, row in city.iterrows():
     f.write(
-        'INSERT INTO "city" ("city_code", "city_name", "state_code") VALUES (\''
+        'INSERT INTO "bd1_accidents_city" ("city_code", "city_name", "state_code") VALUES (\''
         + str(row[0])
         + "', '"
         + str(row[1]).replace("'", '"')
@@ -29,7 +29,7 @@ for index, row in city.iterrows():
     )
 for index, row in section.iterrows():
     f.write(
-        'INSERT INTO "section" ("section_br", "section_km", "section_date", "section_latitude", "section_longitude", "section_ic", "section_ip", "section_icm", "city_name") VALUES (\''
+        'INSERT INTO "bd1_accidents_section" ("section_br", "section_km", "section_date", "section_latitude", "section_longitude", "section_ic", "section_ip", "section_icm", "city_name") VALUES (\''
         + str(row[0])
         + "', '"
         + str(row[1])
@@ -51,7 +51,7 @@ for index, row in section.iterrows():
     )
 for index, row in crash.iterrows():
     f.write(
-        'INSERT INTO "crash" ("crash_id", "crash_date", "crash_time", "section_br", "section_km", "crash_cause", "crash_kind", "crash_classification", "crash_day_phase", "crash_track_direction", "crash_weather", "crash_track_kind", "crash_track_layout", "crash_ground", "crash_uninjured", "crash_slightly_injured", "crash_seriously_injured", "crash_deaths", "crash_latitude", "crash_longitude", "crash_delegacy", "crash_uop") VALUES (\''
+        'INSERT INTO "bd1_accidents_crash" ("crash_id", "crash_date", "crash_time", "section_br", "section_km", "crash_cause", "crash_kind", "crash_classification", "crash_day_phase", "crash_track_direction", "crash_weather", "crash_track_kind", "crash_track_layout", "crash_ground", "crash_uninjured", "crash_slightly_injured", "crash_seriously_injured", "crash_deaths", "crash_latitude", "crash_longitude", "crash_delegacy", "crash_uop") VALUES (\''
         + str(row[0])
         + "', '"
         + str(row[1])
@@ -99,7 +99,7 @@ for index, row in crash.iterrows():
     )
 for index, row in person.iterrows():
     f.write(
-        'INSERT INTO "person" ("person_id", "person_kind", "person_state", "person_age", "person_sex", "crash_id") VALUES (\''
+        'INSERT INTO "bd1_accidents_person" ("person_id", "person_kind", "person_state", "person_age", "person_sex", "crash_id") VALUES (\''
         + str(row[0])
         + "', '"
         + str(row[1])
@@ -115,7 +115,7 @@ for index, row in person.iterrows():
     )
 for index, row in vehicle.iterrows():
     f.write(
-        'INSERT INTO "vehicle" ("vehicle_id", "vehicle_kind", "vehicle_brand", "vehicle_year", "crash_id") VALUES (\''
+        'INSERT INTO "bd1_accidents_vehicle" ("vehicle_id", "vehicle_kind", "vehicle_brand", "vehicle_year", "crash_id") VALUES (\''
         + str(row[0])
         + "', '"
         + str(row[1])
