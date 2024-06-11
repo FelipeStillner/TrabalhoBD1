@@ -29,7 +29,7 @@ for index, row in city.iterrows():
     )
 for index, row in section.iterrows():
     f.write(
-        'INSERT INTO "bd1_accidents_section" ("section_br", "section_km", "section_date", "section_latitude", "section_longitude", "section_ic", "section_ip", "section_icm", "city_name") VALUES (\''
+        'INSERT INTO "bd1_accidents_section" ("section_br", "section_km", "section_date", "section_latitude", "section_longitude", "section_ic", "section_ip", "section_icm", "section_panela", "section_remendo", "section_trincamento", "section_rocada", "section_drenagem", "section_sinalizacao", "city_name") VALUES (\''
         + str(row[0])
         + "', '"
         + str(row[1])
@@ -46,7 +46,19 @@ for index, row in section.iterrows():
         + "', '"
         + str(row[7])
         + "', '"
-        + str(row[8]).replace("'", '"')
+        + str(row[8])
+        + "', '"
+        + str(row[9])
+        + "', '"
+        + str(row[10])
+        + "', '"
+        + str(row[11])
+        + "', '"
+        + str(row[12])
+        + "', '"
+        + str(row[13])
+        + "', '"
+        + str(row[14]).replace("'", '"')
         + "');\n"
     )
 for index, row in crash.iterrows():

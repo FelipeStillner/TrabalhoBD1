@@ -34,10 +34,10 @@ section.replace({".": np.nan}, inplace=True)
 
 section.dropna(inplace=True)
 
-section.drop(columns=["Unnamed: 0", "stateid"], inplace=True)
+section.drop(columns=["stateid"], inplace=True)
 
 for index, row in section.iterrows():
-    date = str(row["date"]).split("/")
-    section.at[index, "date"] = date[2] + "-" + date[0] + "-" + date[1]
+    date = str(row["Data"]).split("/")
+    section.at[index, "Data"] = date[2] + "-" + date[0] + "-" + date[1]
     
-section.to_csv("finalCsv/sectionwcity.csv", index=False, header=False)
+section.to_csv("finalCsv/section.csv", index=False)

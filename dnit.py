@@ -1,25 +1,70 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("initialCsv/dnitmarco2024.csv", on_bad_lines='skip')
+df = pd.read_csv("initialCsv/dnitmarco2024.csv")
 
-section = df[['UF', "Rodovia", "km inicial", "Data", "Latitude", "Longitude", "IC", "IP", "ICM"]]
+print(df.head())
+
+section = df.copy()
 
 section.rename(columns={"UF": "stateid", "Rodovia": "code", "km inicial": "km"}, inplace=True)
 
-section.dropna(inplace=True)
+newsection = section[['stateid', "code", "km", "Data", "Latitude", "Longitude", "IC", "IP", "ICM"]].copy()
+
+print(df.head())
+print(newsection.head())
 
 for index, row in section.iterrows():
-    row["code"] = (row["code"])[3:]
-    try:
-        row["km"] = float(row["km"]).__floor__()
-    except:
-        row["code"] = np.nan
+    if (row[5] == "X"):
+        newsection.at[index, "panela"] = 'A'
+    elif (row[6] == "X"):
+        newsection.at[index, "panela"] = 'M'
+    else:
+        newsection.at[index, "panela"] = 'B'
+    if (row[8] == "X"):
+        newsection.at[index, "remendo"] = 'A'
+    elif (row[9] == "X"):
+        newsection.at[index, "remendo"] = 'M'
+    else:
+        newsection.at[index, "remendo"] = 'B'
+    if (row[11] == "X"):
+        newsection.at[index, "trincamento"] = 'A'
+    elif (row[12] == "X"):
+        newsection.at[index, "trincamento"] = 'M'
+    else:
+        newsection.at[index, "trincamento"] = 'B'
         
-section.dropna(inplace=True)
+    if (row[14] == "X"):
+        newsection.at[index, "rocada"] = 'A'
+    elif (row[15] == "X"):
+        newsection.at[index, "rocada"] = 'M'
+    else:
+        newsection.at[index, "rocada"] = 'B'
+    if (row[17] == "X"):
+        newsection.at[index, "drenagem"] = 'A'
+    elif (row[18] == "X"):
+        newsection.at[index, "drenagem"] = 'M'
+    else:
+        newsection.at[index, "drenagem"] = 'B'
+    if (row[20] == "X"):
+        newsection.at[index, "sinalizacao"] = 'A'
+    elif (row[21] == "X"):
+        newsection.at[index, "sinalizacao"] = 'M'
+    else:
+        newsection.at[index, "sinalizacao"] = 'B'
+        
+    
+    newsection.at[index, "code"] = (str(row["code"]))[3:]
+    try:
+        newsection.at[index, "km"] = float(row["km"]).__floor__()
+    except:
+        newsection.at[index, "code"] = np.nan
+newsection.dropna(inplace=True)
 
-section.drop_duplicates(subset=['km', 'code'], inplace=True)
+newsection.drop_duplicates(subset=['km', 'code'], inplace=True)
 
-section.sort_values(by=['code', 'km'])
+newsection.sort_values(by=['code', 'km'])
 
-section.to_csv("partialCsv/section.csv", index=False)
+print(newsection.head())
+
+newsection.to_csv("partialCsv/section.csv", index=False)
